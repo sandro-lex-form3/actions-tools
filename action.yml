@@ -29,6 +29,7 @@ runs:
           
     - name: Get the output from docker action 
       run: echo "The time was ${{ steps.hello.outputs.time }}"
+      shell: bash
     
     - name: Calls a js action
       id: hello-js
@@ -36,6 +37,7 @@ runs:
       with:
         who-to-greet: ${NOT_SECRET}
 
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello-js.outputs.time }}"
+    - name: Get the output time
+      run: echo "The time was ${{ steps.hello-js.outputs.time }}"
+      shell: bash
       
