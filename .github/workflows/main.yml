@@ -3,17 +3,13 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
+    container: sandrolex2/gh-runner:ubuntu-builder-no-docker
     name: A job to say hello
     steps:
-      # To use this repository's private action,
-      # you must check out the repository
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Hello world action step
-        uses: ./ # Uses an action in the root directory
-        id: hello
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: sandro-lex-form3/actions-tools@composite
         with:
-          who-to-greet: 'Alice'
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+          who-to-greet: 'vic-viper'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: bash
