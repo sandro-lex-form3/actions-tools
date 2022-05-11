@@ -21,3 +21,22 @@ runs:
       shell: bash
     - run: $GITHUB_ACTION_PATH/goodbye.sh
       shell: bash
+
+    - name: Calls a Docker action
+      uses: sandro-lex-form3/actions-tools@main
+      with:
+          who-to-greet: ${DOCKER_HUB_USERNAME}
+          
+      # Use the output from the `hello` step
+      - name: Get the output from docker action 
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
+    
+    - name: Calls a js action
+      id: hello-js
+      uses: sandro-lex-form3/actions-tools@js
+      with:
+        who-to-greet: ${NOT_SECRET}
+
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello-js.outputs.time }}"
+      
