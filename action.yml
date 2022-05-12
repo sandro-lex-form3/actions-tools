@@ -22,22 +22,27 @@ runs:
     - run: $GITHUB_ACTION_PATH/goodbye.sh
       shell: bash
 
-    - name: Calls a Docker action
-      uses: sandro-lex-form3/actions-tools@main
-      with:
-        who-to-greet: ${DOCKER_HUB_USERNAME}
+    # - name: Calls a Docker action
+    #   uses: sandro-lex-form3/actions-tools@main
+    #   with:
+    #     who-to-greet: ${DOCKER_HUB_USERNAME}
           
-    - name: Get the output from docker action 
-      run: echo "The time was ${{ steps.hello.outputs.time }}"
-      shell: bash
+    # - name: Get the output from docker action 
+    #   run: echo "The time was ${{ steps.hello.outputs.time }}"
+    #   shell: bash
     
-    - name: Calls a js action
-      id: hello-js
-      uses: sandro-lex-form3/actions-tools@js
-      with:
-        who-to-greet: ${NOT_SECRET}
+    # - name: Calls a js action
+    #   id: hello-js
+    #   uses: sandro-lex-form3/actions-tools@js
+    #   with:
+    #     who-to-greet: ${NOT_SECRET}
 
-    - name: Get the output time
-      run: echo "The time was ${{ steps.hello-js.outputs.time }}"
-      shell: bash
+    # - name: Get the output time
+    #   run: echo "The time was ${{ steps.hello-js.outputs.time }}"
+    #   shell: bash
+    
+    - name: cascading another composite
+      uses: sandro-lex-form3/actions-tools2@main
+      with:
+        who-to-greet: 'gradius'
       
