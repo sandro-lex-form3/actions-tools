@@ -17,10 +17,17 @@ jobs:
       # Use the output from the `hello` step
       - name: Verify
         run: |
-          ls -al 
-          ls -al /__w/_temp
+          echo "ls $GITHUB_PATH"
+          ls -al $GITHUB_PATH
+      - name: ENV
+        run: env
+      - name: explore path
+        run: cat $GITHUB_PATH
+
       - name: tool-one
-        run: /__w/_temp/tool-one.sh
+        run: |
+          /__w/tool-one.sh
 
       - name: tool-two
-        run: /__w/_temp/tool-two.sh
+        run: /__w/tool-two.sh
+      

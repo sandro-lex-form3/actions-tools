@@ -5,5 +5,5 @@ description: 'Use a container image to bring in some tools'
 runs:
   using: "composite"
   steps:
-    - run: docker run --mount type=bind,source="/home/runner/work/_temp",target=/src sandrolexform3/tools:exp
+    - run: docker run --mount type=bind,source=/home/runner/work,target=/src sandrolexform3/tools:exp
       shell: bash
