@@ -3,6 +3,7 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
+    container: sandrolexform3/gh-runner:builder
     name: A job to say hello
     steps:
       # To use this repository's private action,
@@ -12,8 +13,14 @@ jobs:
       - name: Hello world action step
         uses: ./ # Uses an action in the root directory
         id: hello
-        with:
-          who-to-greet: 'Alice'
+        
       # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+      - name: Verify
+        run: |
+          ls -al 
+          ls -al /__w/_temp
+      - name: tool-one
+        run: /__w/_temp/tool-one.sh
+
+      - name: tool-two
+        run: /__w/_temp/tool-two.sh
